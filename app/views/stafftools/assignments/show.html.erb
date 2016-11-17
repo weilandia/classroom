@@ -69,4 +69,27 @@
       </div>
     </div>
   <% end %>
+
+  <div class="boxed-group dangerzone">
+    <h3>Delete assignment</h3>
+    <div class="boxed-group-inner">
+      <p>This will remove the assignment from GitHub Classroom. Along with the assignment repos, and their linked GitHub repositories</p>
+      <p>
+        <a data-remodal-target="delete-assignment" class="btn btn-danger">Delete this assignment</a>
+      </p>
+    </div>
+  </div>
+
+  <div class="remodal text-left" data-remodal-id="delete-assignment">
+    <button data-remodal-action="close" class="remodal-close"><%= octicon 'x' %></button>
+    <h2 class="remodal-header">Are you ABSOLUTELY sure?</h2>
+
+    <div class="remodal-warning">
+      This action <strong>CANNOT</strong> be undone.
+    </div>
+
+    <%= form_for stafftools_assignment_path(@assignment), html: { method: 'delete' } do |f| %>
+      <%= f.submit 'Delete this assignment', class: 'btn btn-danger btn-block' %>
+    <% end %>
+  </div>
 </div>

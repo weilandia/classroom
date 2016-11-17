@@ -82,31 +82,31 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :organizations, path: 'classrooms', only: [:show]
+    resources :organizations, path: 'classrooms', only: [:show, :destroy]
 
-    resources :repo_accesses, only: [:show]
+    resources :repo_accesses, only: [:show, :destroy]
 
     resources :assignment_invitations, only: [:show]
 
-    resources :assignment_repos, only: [:show] do
+    resources :assignment_repos, only: [:show, :destroy] do
       member do
         get :list_item, path: 'list-item'
       end
     end
 
-    resources :assignments, only: [:show]
+    resources :assignments, only: [:show, :destroy]
 
     resources :group_assignment_invitations, path: 'group-assignment-invitations', only: [:show]
 
-    resources :group_assignment_repos, path: 'group-assignment-repos', only: [:show] do
+    resources :group_assignment_repos, path: 'group-assignment-repos', only: [:show, :destroy] do
       member do
         get :list_item, path: 'list-item'
       end
     end
 
-    resources :group_assignments, path: 'group-assignments', only: [:show]
+    resources :group_assignments, path: 'group-assignments', only: [:show, :destroy]
 
-    resources :groupings, only: [:show]
-    resources :groups,    only: [:show]
+    resources :groupings, only: [:show, :destroy]
+    resources :groups,    only: [:show, :destroy]
   end
 end

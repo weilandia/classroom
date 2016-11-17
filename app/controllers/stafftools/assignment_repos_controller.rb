@@ -10,6 +10,9 @@ module Stafftools
       respond_to { |format| format.html { render layout: false } }
     end
 
+    def destroy
+    end
+
     private
 
     def set_assignment_repo
