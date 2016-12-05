@@ -18,6 +18,12 @@ class GitHubRepository < GitHubResource
     end
   end
 
+  def commit_sha(ref)
+    GitHub::Errors.with_error_handling do
+      @client.ref(@id, ref).object.sha
+    end
+  end
+
   def present?(**options)
     self.class.present?(@client, @id, options)
   end
