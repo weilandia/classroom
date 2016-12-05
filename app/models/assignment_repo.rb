@@ -8,6 +8,8 @@ class AssignmentRepo < ApplicationRecord
 
   has_one :organization, -> { unscope(where: :deleted_at) }, through: :assignment
 
+  has_many :assignment_submissions, as: :submittable, dependent: :destroy
+
   belongs_to :assignment
   belongs_to :repo_access
   belongs_to :user
@@ -29,6 +31,8 @@ class AssignmentRepo < ApplicationRecord
 
   delegate :creator, :starter_code_repo_id, to: :assignment
   delegate :github_user,                    to: :user
+
+  alias_attribute :submissions, :assignment_submissions
 
   # This should really be in a view model
   # but it'll live here for now.
