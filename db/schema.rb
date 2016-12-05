@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161130020119) do
+ActiveRecord::Schema.define(version: 20161205013013) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,16 @@ ActiveRecord::Schema.define(version: 20161130020119) do
     t.index ["github_repo_id"], name: "index_assignment_repos_on_github_repo_id", unique: true, using: :btree
     t.index ["repo_access_id"], name: "index_assignment_repos_on_repo_access_id", using: :btree
     t.index ["user_id"], name: "index_assignment_repos_on_user_id", using: :btree
+  end
+
+  create_table "assignment_submissions", force: :cascade do |t|
+    t.string   "sha",               null: false
+    t.integer  "github_release_id", null: false
+    t.string   "submittable_type"
+    t.integer  "submittable_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["submittable_type", "submittable_id"], name: "index_assignment_submissions", using: :btree
   end
 
   create_table "assignments", force: :cascade do |t|
