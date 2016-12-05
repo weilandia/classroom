@@ -26,8 +26,16 @@
   </div>
 
   <div class="flex-table-item text-right">
-    <strong class="css-truncate css-truncate-target">
-      <%= link_to @group_assignment_repo.github_repository.full_name, @group_assignment_repo.github_repository.html_url, class: "assignment-repo-github-url #{'disabled' if @group_assignment_repo.disabled?}" %>
-    </strong>
+    <div>
+      <strong class="css-truncate css-truncate-target">
+        <%= link_to @group_assignment_repo.github_repository.full_name, @group_assignment_repo.github_repository.html_url, class: "assignment-repo-github-url #{'disabled' if @group_assignment_repo.disabled?}" %>
+      </strong>
+    </div>
+    <span class="text-muted">
+      <%= octicon('tasklist') %>
+      <%= link_to "#{@group_assignment_repo.github_repository.html_url}/releases", class: 'text-muted' do %>
+        <%= pluralize(@group_assignment_repo.submissions.count, 'submission') %>
+      <% end %>
+    </span>
   </div>
 </div>
