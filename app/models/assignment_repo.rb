@@ -48,6 +48,10 @@ class AssignmentRepo < ApplicationRecord
     @github_repository ||= GitHubRepository.new(organization.github_client, github_repo_id)
   end
 
+  def github_user
+    @github_user ||= GitHubUser.new(user.github_client, user.uid)
+  end
+
   def repo_name
     @repo_name ||= generate_github_repo_name
   end
@@ -73,8 +77,6 @@ class AssignmentRepo < ApplicationRecord
 
   def name
     return @name if defined?(@name)
-
-    github_user = GitHubUser.new(user.github_client, user.uid)
     @name = github_user.login_no_cache
   end
 end

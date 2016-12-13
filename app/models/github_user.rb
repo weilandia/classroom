@@ -24,6 +24,6 @@ class GitHubUser < GitHubResource
   private
 
   def github_attributes
-    %w(login avatar_url html_url name)
+    %w(login avatar_url html_url name email)
   end
 end
